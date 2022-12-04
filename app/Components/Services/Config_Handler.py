@@ -1,263 +1,258 @@
+# Include Sesction
 import os
 from configparser import ConfigParser
 
-
+# Class Deffinition
 class Config_Handler:
-   Class_Init_sts = False
+   # Self Generated interfaces
+   b_Class_Init_flg = False
+   str_App_Root_Path = ''
 
-   Cantata_Reports_Path = ''
-   VCast_Reports_Path = ''
-   VTest_SW5_Reports_Path = ''
-   VTest_SW6_Reports_Path = ''
-   Excel_db_Path = ''
+   # Imported Objects from Cfg
 
-   Parse_Cantata = False
-   Parse_VCast = False
-   Parse_VTest_SW5 = False
-   Parse_VTest_SW6 = False
+   # Start: Insert Cfg Objects
 
-   Comp_Names_Cantata = []
-   Comp_Names_VCast = []
-   Comp_Names_VTest_SW5 = []
-   Comp_Names_VTest_SW6 = []
+   str_Envirament_Inputs_Config_Ini_Relative_Path = ''
+   str_Envirament_Template_Config_Handler_Relative_Path = ''
+   str_Envirament_Outputs_Config_Handler_Relative_Path = ''
 
-   Cantata_Tcs_Doc_Ids = []
-   VCast_Tcs_Doc_Ids = []
-   VTest_SW5_Tcs_Doc_Ids = []
-   VTest_SW6_Tcs_Doc_Ids = []
+   str_Config_Ini_Boolean_Regex = ''
+   str_Config_Ini_Int_Regex = ''
+   str_Config_Ini_Float_Regex = ''
+   str_Config_Ini_String_Regex = ''
+   str_Config_Ini_List_Boolean_Regex = ''
+   str_Config_Ini_List_Int_Regex = ''
+   str_Config_Ini_List_Float_Regex = ''
+   str_Config_Ini_List_String_Regex = ''
+   str_Config_Ini_Section_Regex = ''
 
-   Requirements_Acceptance_State = []
 
-   VCast_Pass_Comments = ''
-   VCast_Fail_Comments = ''
-   VCast_Skipped_Comments = ''
+   str_Template_Add_Class_Objects_Raw_Indicator = ''
+   str_Template_Add_Class_Methods_Raw_Indicator = ''
+   str_Template_Add_Config_Vals_Raw_Indicator = ''
 
-   VTest_SW5_Pass_Comments = ''
-   VTest_SW5_Fail_Comments = ''
-   VTest_SW5_Skipped_Comments = ''
 
-   VTest_SW6_Pass_Comments = ''
-   VTest_SW6_Fail_Comments = ''
-   VTest_SW6_Skipped_Comments = ''
+   # Stop: Insert Cfg Objects
+   # Methodss
+
 
    @classmethod
-   def Get_Cantata_Reports_Path(cls):
+   def Get_str_App_Root_Path(cls):
       if cls.Class_Init_sts is False:
          cls.Import_Config()
-      return cls.Cantata_Reports_Path
+      return cls.str_App_Root_Path
+
+
+   # Start: Insert Get Methods
 
    @classmethod
-   def Get_VCast_Reports_Path(cls):
+   def Get_str_Envirament_Inputs_Config_Ini_Relative_Path(cls):
       if cls.Class_Init_sts is False:
          cls.Import_Config()
-      return cls.VCast_Reports_Path
+      return cls.str_Envirament_Inputs_Config_Ini_Relative_Path
 
-   @classmethod
-   def Get_VTest_SW5_Reports_Path(cls):
+   def Get_str_Envirament_Template_Config_Handler_Relative_Path(cls):
       if cls.Class_Init_sts is False:
          cls.Import_Config()
-      return cls.VTest_SW5_Reports_Path
+      return cls.str_Envirament_Template_Config_Handler_Relative_Path
 
-   @classmethod
-   def Get_VTest_SW6_Reports_Path(cls):
+   def Get_str_Envirament_Outputs_Config_Handler_Relative_Path(cls):
       if cls.Class_Init_sts is False:
          cls.Import_Config()
-      return cls.VTest_SW6_Reports_Path
+      return cls.str_Envirament_Outputs_Config_Handler_Relative_Path
 
-   @classmethod
-   def Get_Excel_db_Path(cls):
+   def Get_str_Config_Ini_Boolean_Regex(cls):
       if cls.Class_Init_sts is False:
          cls.Import_Config()
-      return cls.Excel_db_Path
+      return cls.str_Config_Ini_Boolean_Regex
 
-   @classmethod
-   def Get_Parse_Cantata(cls):
+   def Get_str_Config_Ini_Int_Regex(cls):
       if cls.Class_Init_sts is False:
          cls.Import_Config()
-      return cls.Parse_Cantata
+      return cls.str_Config_Ini_Int_Regex
 
-   @classmethod
-   def Get_Parse_VCast(cls):
+   def Get_str_Config_Ini_Float_Regex(cls):
       if cls.Class_Init_sts is False:
          cls.Import_Config()
-      return cls.Parse_VCast
+      return cls.str_Config_Ini_Float_Regex
 
-   @classmethod
-   def Get_Parse_VTest_SW5(cls):
+   def Get_sstr_Config_Ini_String_Regex(cls):
       if cls.Class_Init_sts is False:
          cls.Import_Config()
-      return cls.Parse_VTest_SW5
+      return cls.str_Config_Ini_String_Regex
 
-   @classmethod
-   def Get_Parse_VTest_SW6(cls):
+   def Get_str_Config_Ini_List_Boolean_Regex(cls):
       if cls.Class_Init_sts is False:
          cls.Import_Config()
-      return cls.Parse_VTest_SW6
+      return cls.str_Config_Ini_List_Boolean_Regex
 
-   @classmethod
-   def Get_Comp_Names_Cantata(cls):
+   def Get_str_Config_Ini_List_Int_Regex(cls):
       if cls.Class_Init_sts is False:
          cls.Import_Config()
-      return cls.Comp_Names_Cantata
+      return cls.str_Config_Ini_List_Int_Regex
 
-   @classmethod
-   def Get_Comp_Names_VCast(cls):
+   def Get_str_Config_Ini_List_Float_Regex(cls):
       if cls.Class_Init_sts is False:
          cls.Import_Config()
-      return cls.Comp_Names_VCast
+      return cls.str_Config_Ini_List_Float_Regex
 
-   @classmethod
-   def Get_Comp_Names_VTest_SW5(cls):
+   def Get_str_Config_Ini_List_String_Regex(cls):
       if cls.Class_Init_sts is False:
          cls.Import_Config()
-      return cls.Comp_Names_VTest_SW5
+      return cls.str_Config_Ini_List_String_Regex
 
-   @classmethod
-   def Get_Comp_Names_VTest_SW6(cls):
+
+   def Get_str_Config_Ini_Section_Regex(cls):
       if cls.Class_Init_sts is False:
          cls.Import_Config()
-      return cls.Comp_Names_VTest_SW6
+      return cls.str_Config_Ini_Section_Regex
 
-   @classmethod
-   def Get_Cantata_Tcs_Doc_Ids(cls):
+   def Get_str_Template_Add_Class_Objects_Raw_Indicator(cls):
       if cls.Class_Init_sts is False:
          cls.Import_Config()
-      return cls.Cantata_Tcs_Doc_Ids
+      return cls.str_Template_Add_Class_Objects_Raw_Indicator
 
-   @classmethod
-   def Get_VCast_Tcs_Doc_Ids(cls):
+   def Get_str_Template_Add_Class_Methods_Raw_Indicator(cls):
       if cls.Class_Init_sts is False:
          cls.Import_Config()
-      return cls.VCast_Tcs_Doc_Ids
+      return cls.str_Template_Add_Class_Methods_Raw_Indicator
 
-   @classmethod
-   def Get_VTest_SW5_Tcs_Doc_Ids(cls):
+   def Get_str_Template_Add_Config_Vals_Raw_Indicator(cls):
       if cls.Class_Init_sts is False:
          cls.Import_Config()
-      return cls.VTest_SW5_Tcs_Doc_Ids
+      return cls.str_Template_Add_Config_Vals_Raw_Indicator
 
-   @classmethod
-   def Get_VTest_SW6_Tcs_Doc_Ids(cls):
-      if cls.Class_Init_sts is False:
-         cls.Import_Config()
-      return cls.VTest_SW6_Tcs_Doc_Ids
+   # Stop: Insert Get Methods
 
-   @classmethod
-   def Get_Requirements_Acceptance_State(cls):
-      if cls.Class_Init_sts is False:
-         cls.Import_Config()
-      return cls.Requirements_Acceptance_State
+   # Class Private Methods:
 
-   @classmethod
-   def Get_VCast_Pass_Comments(cls):
-      if cls.Class_Init_sts is False:
-         cls.Import_Config()
-      return cls.VCast_Pass_Comments
+   @staticmethod
+   def Clean_Convert_Boolean(str_value):
+      b_retrun_value = False
 
-   @classmethod
-   def Get_VCast_Fail_Comments(cls):
-      if cls.Class_Init_sts is False:
-         cls.Import_Config()
-      return cls.VCast_Fail_Comments
+      str_value = str_value.replace('/n','')
+      str_value = str_value.replace('/s','')
 
-   @classmethod
-   def Get_VCast_Skipped_Comments(cls):
-      if cls.Class_Init_sts is False:
-         cls.Import_Config()
-      return cls.VCast_Skipped_Comments
+      if str_value == 'True':
+         b_retrun_value = True
 
-   @classmethod
-   def Get_VTest_SW5_Pass_Comments(cls):
-      if cls.Class_Init_sts is False:
-         cls.Import_Config()
-      return cls.VTest_SW5_Pass_Comments
+      return b_retrun_value
 
-   @classmethod
-   def Get_VTest_SW5_Fail_Comments(cls):
-      if cls.Class_Init_sts is False:
-         cls.Import_Config()
-      return cls.VTest_SW5_Fail_Comments
+   @staticmethod
+   def Clean_Convert_List_Boolean(str_values):
+      lsb_retrun_values = []
+      lstr_values = str_values.split(",")
+      for str_element in lstr_values:
+         str_element = str_element.replace('/n','')
+         str_element = str_element.replace('/s','')
 
-   @classmethod
-   def Get_VTest_SW5_Skipped_Comments(cls):
-      if cls.Class_Init_sts is False:
-         cls.Import_Config()
-      return cls.VTest_SW5_Skipped_Comments
+         if str_element == 'True':
+            lsb_retrun_values.append(True)
+         else:
+            lsb_retrun_values.append(False)
 
-   @classmethod
-   def Get_VTest_SW6_Pass_Comments(cls):
-      if cls.Class_Init_sts is False:
-         cls.Import_Config()
-      return cls.VTest_SW6_Pass_Comments
+      return lsb_retrun_values
 
-   @classmethod
-   def Get_VTest_SW6_Fail_Comments(cls):
-      if cls.Class_Init_sts is False:
-         cls.Import_Config()
-      return cls.VTest_SW6_Fail_Comments
+   @staticmethod
+   def Clean_Convert_Int(i_value):
+      i_retrun_value = 0
 
-   @classmethod
-   def Get_VTest_SW6_Skipped_Comments(cls):
-      if cls.Class_Init_sts is False:
-         cls.Import_Config()
-      return cls.VTest_SW6_Skipped_Comments
+      try:
+         i_retrun_value = int(i_value)
+      except:
+         i_retrun_value = 0
+
+      return i_retrun_value
+
+   @staticmethod
+   def Clean_Convert_List_Int(str_values):
+      lsi_retrun_values = []
+      i_aux = 0
+      lstr_values = str_values.split(",")
+      for str_element in lstr_values:
+         str_element = str_element.replace('/n','')
+         str_element = str_element.replace('/s','')
+
+         try:
+            i_aux = int(str_element)
+         except:
+            i_aux = 0
+
+         lsi_retrun_values.append(i_aux)
+
+      return lsi_retrun_values
+
+   @staticmethod
+   def Clean_Convert_Float(f_value):
+      f_retrun_value = float(0)
+
+      try:
+         f_retrun_value = float(f_value)
+      except:
+         f_retrun_value = float(0)
+
+      return f_retrun_value
 
 
+   @staticmethod
+   def Clean_Convert_List_Float(str_values):
+      lsf_retrun_values = []
+      f_aux = float(0)
+      lstr_values = str_values.split(",")
+      for str_element in lstr_values:
+         str_element = str_element.replace('/n','')
+         str_element = str_element.replace('/s','')
 
+         try:
+            f_aux = float(str_element)
+         except:
+            f_aux = 0
+
+         lsf_retrun_values.append(f_aux)
+
+      return lsf_retrun_values
+
+   @staticmethod
+   def Clean_Convert_List_String(str_values):
+      lstr_retrun_values = []
+      lstr_retrun_values = str_values.split(",")
+      return lstr_retrun_values
 
    @classmethod
    def Import_Config(cls):
       #Creating path to project config file
-      ROOT_DIR = os.path.dirname(os.path.abspath('App'))
-      cfg_file_path = os.path.join(ROOT_DIR,"Config\\config.ini")
+      cls.str_App_Root_Path = os.path.dirname(os.path.abspath('App'))
+      str_cfg_file_path = os.path.join(cls.str_App_Root_Path,"Config\\config.ini")
 
-      #Create Inputs and Outputs Paths
-      cls.Cantata_Reports_Path = os.path.join(ROOT_DIR,"Inputs\\Cantata")
-      cls.VCast_Reports_Path = os.path.join(ROOT_DIR,"Inputs\\VectorCast")
-      cls.VTest_SW5_Reports_Path = os.path.join(ROOT_DIR,"Inputs\\VTest\\SW5-SWIT")
-      cls.VTest_SW6_Reports_Path = os.path.join(ROOT_DIR,"Inputs\\VTest\\SW6-SWQT")
-      cls.Excel_db_Path = os.path.join(ROOT_DIR,"Output\\Output_template.xlsx")
 
       #Import and parse config file
-      proj_config = ConfigParser()
-      proj_config.read(cfg_file_path)
-
-      #Import "Options" sections
-      cls.Parse_Cantata = str(proj_config['Options']['Parse_Cantata'])
-      cls.Parse_VCast = str(proj_config['Options']['Parse_VCast'])
-      cls.Parse_VTest_SW5 = str(proj_config['Options']['Parse_VTest_SW5'])
-      cls.Parse_VTest_SW6 = str(proj_config['Options']['Parse_VTest_SW6'])
-
-      #Import "Inputs" sections
-      cls.Comp_Names_Cantata = list(str(proj_config['Inputs']['Comp_Names_Cantata']).split(','))
-      cls.Comp_Names_VCast = list(str(proj_config['Inputs']['Comp_Names_VCast']).split(','))
-      cls.Comp_Names_VTest_SW5 = list(str(proj_config['Inputs']['Comp_Names_VTest_SW5']).split(','))
-      cls.Comp_Names_VTest_SW6 = list(str(proj_config['Inputs']['Comp_Names_VTest_SW6']).split(','))
-
-      cls.Cantata_Tcs_Doc_Ids = list(str(proj_config['Inputs']['Cantata_Tcs_Doc_Ids']).split(','))
-      cls.VCast_Tcs_Doc_Ids = list(str(proj_config['Inputs']['VCast_Tcs_Doc_Ids']).split(','))
-      cls.VTest_SW5_Tcs_Doc_Ids = list(str(proj_config['Inputs']['VTest_SW5_Tcs_Doc_Ids']).split(','))
-      cls.VTest_SW6_Tcs_Doc_Ids = list(str(proj_config['Inputs']['VTest_SW6_Tcs_Doc_Ids']).split(','))
-
-      #Import "Misk" sections
-
-      cls.Requirements_Acceptance_State = list(str(proj_config['Misk']['Requirements_Acceptance_State']).split(','))
-
-      cls.VCast_Pass_Comments = str(proj_config['Misk']['VCast_Pass_Comments'])
-      cls.VCast_Fail_Comments = str(proj_config['Misk']['VCast_Fail_Comments'])
-      cls.VCast_Skipped_Comments = str(proj_config['Misk']['VCast_Skipped_Comments'])
-
-      cls.VTest_SW5_Pass_Comments = str(proj_config['Misk']['VTest_SW5_Pass_Comments'])
-      cls.VTest_SW5_Fail_Comments = str(proj_config['Misk']['VTest_SW5_Fail_Comments'])
-      cls.VTest_SW5_Skipped_Comments = str(proj_config['Misk']['VTest_SW5_Skipped_Comments'])
-
-      cls.VTest_SW6_Pass_Comments = str(proj_config['Misk']['VTest_SW6_Pass_Comments'])
-      cls.VTest_SW6_Fail_Comments = str(proj_config['Misk']['VTest_SW6_Fail_Comments'])
-      cls.VTest_SW6_Skipped_Comments = str(proj_config['Misk']['VTest_SW6_Skipped_Comments'])
+      obj_Proj_Config = ConfigParser()
+      obj_Proj_Config.read(str_cfg_file_path)
 
 
+      # Start: Insert Config Init Vars
+      cls.str_Envirament_Inputs_Config_Ini_Relative_Path = str(obj_Proj_Config['Envirament']['str_Inputs_Config_Ini_Relative_Path'])
+      cls.str_Envirament_Template_Config_Handler_Relative_Path = str(obj_Proj_Config['Envirament']['str_Template_Config_Handler_Relative_Path'])
+      cls.str_Envirament_Outputs_Config_Handler_Relative_Path = str(obj_Proj_Config['Envirament']['str_Envirament_Outputs_Config_Handler_Relative_Path'])
 
-      cls.Class_Init_sts = True
+      cls.str_Config_Ini_Boolean_Regex = str(obj_Proj_Config['Categoty1']['str_Config_Ini_Boolean_Regex'])
+      cls.str_Config_Ini_Int_Regex = str(obj_Proj_Config['Categoty1']['str_Config_Ini_Int_Regex'])
+      cls.str_Config_Ini_Float_Regex = str(obj_Proj_Config['Categoty1']['str_Config_Ini_Float_Regex'])
+      cls.str_Config_Ini_String_Regex = str(obj_Proj_Config['Categoty1']['str_Config_Ini_String_Regex'])
+      cls.str_Config_Ini_List_Boolean_Regex = str(obj_Proj_Config['Categoty1']['str_Config_Ini_List_Boolean_Regex'])
+      cls.str_Config_Ini_List_Int_Regex = str(obj_Proj_Config['Categoty1']['str_Config_Ini_List_Int_Regex'])
+      cls.str_Config_Ini_List_Float_Regex = str(obj_Proj_Config['Categoty1']['str_Config_Ini_List_Float_Regex'])
+      cls.str_Config_Ini_List_String_Regex = str(obj_Proj_Config['Categoty1']['str_Config_Ini_List_String_Regex'])
+      cls.str_Config_Ini_Section_Regex = str(obj_Proj_Config['Categoty1']['str_Config_Ini_Section_Regex'])
+
+      cls.str_Template_Add_Class_Objects_Raw_Indicator = str(obj_Proj_Config['Categoty1']['str_Template_Add_Class_Objects_Raw_Indicator'])
+      cls.str_Template_Add_Class_Methods_Raw_Indicator = str(obj_Proj_Config['Categoty1']['str_Template_Add_Class_Methods_Raw_Indicator'])
+      cls.str_Template_Add_Config_Vals_Raw_Indicator = str(obj_Proj_Config['Categoty1']['str_Template_Add_Config_Vals_Raw_Indicator'])
+
+      # Stop: Insert Config Init Vars
+
+
+      cls.b_Class_Init_flg = True
 
 
 
