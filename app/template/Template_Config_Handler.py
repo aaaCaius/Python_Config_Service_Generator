@@ -12,24 +12,10 @@ class Config_Handler:
    
     # Imported Objects from Cfg
     # Start: Insert Cfg Objects
-   
     
-    # Stop: Insert Cfg Objects
-    # Methodss
+    # Stop: Insert Get Methods
 
-
-    @classmethod
-    def Get_str_App_Root_Path(cls):
-        if cls.b_Class_Init_flg is False:
-            cls.Import_Config()
-        return cls.str_App_Root_Path
-
-        # Start: Insert Get Methods
-
-
-        # Stop: Insert Get Methods
-
-        # Class Private Methods:
+    # Class Private Methods:
 
     @staticmethod
     def Clean_Convert_Boolean(str_value):
@@ -146,6 +132,3 @@ class Config_Handler:
         # Stop: Insert Config Init Vars
 
         cls.b_Class_Init_flg = True
-
-
-
