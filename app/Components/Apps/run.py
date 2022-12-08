@@ -26,15 +26,23 @@ def make_imports():
     with open(tch_path, "r+") as tch:
         # Get all content from the file
         content = tch.readlines()
-        keys_in_cfg = []
         for i, line in enumerate(content):
             if "# Start: Insert Cfg Objects" in line:
                 # Get the total number of keys in each section of .ini file. Add them to keys_in_cfg.
                 for j in cfg_dict.keys():
-                    keys_in_cfg.append(len(cfg_dict[j]))
                     for key, value in cfg_dict[j].items():
                         # Add the key-value pairs as class attributes.
                         content.insert(i + 1, f"\t{key} = {value}\n")
+            if "# Start: Insert Get Methods" in line:
+                # Get the total number of keys in each section of .ini file. Add them to keys_in_cfg.
+                for j in cfg_dict.keys():
+                    for key, value in cfg_dict[j].items():
+                        # Add the key-value pairs as class attributes.
+                        content.insert(i + 1,
+                                       f"\n\t@classmethod\n\tdef Get_{key}(cls):"
+                                       f"\n\t\tif cls.b_Class_Init_flg is False:"
+                                       f"\n\t\t\tcls.Import_Config()"
+                                       f"\n\t\treturn cls.{key}\n")
         # Delete everything from file and go to line 0.
         tch.seek(0)
         tch.truncate(0)
