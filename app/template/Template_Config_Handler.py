@@ -133,7 +133,7 @@ class Config_Handler:
     def Import_Config(cls):
         #Creating path to project config file
         cls.str_App_Root_Path = os.path.dirname(os.path.abspath('App'))
-        str_cfg_file_path = os.path.join(cls.str_App_Root_Path,"Config\\config.ini")
+        str_cfg_file_path = os.path.join(cls.str_App_Root_Path,"Config/config.ini")
 
 
         #Import and parse config file
