@@ -1,7 +1,7 @@
 import os
 from app import root_dir    # This returns the absolute path of the application (\"app")
 from configparser import ConfigParser
-
+import re
 
 def make_imports():
     """
@@ -11,7 +11,7 @@ def make_imports():
     ROOT_DIR = root_dir()
 
     # Load config file.
-    cfg_path = os.path.join(ROOT_DIR, "inputs/config.ini")
+    cfg_path = os.path.join(ROOT_DIR, "Config/config.ini")
     cfg = ConfigParser()
     cfg.read(cfg_path)
     # Create an empty dict to store the key-value pairs from config.ini.
@@ -33,7 +33,7 @@ def make_imports():
                     content.insert(i + 1, f"\n\t# {j} section\n")
                     for key, value in cfg_dict[j].items():
                         # Add the key-value pairs as class attributes.
-                        content.insert(i + 2, f"\t{key} = ''\n")
+                        content.insert(i + 2, f"\t{key} = {value}\n")
             # Create class "get" functions
             if "# Start: Insert Get Methods" in line:
                 for j in cfg_dict.keys():
@@ -44,12 +44,12 @@ def make_imports():
                                        f"\n\t\tif cls.b_Class_Init_flg is False:"
                                        f"\n\t\t\tcls.Import_Config()"
                                        f"\n\t\treturn cls.{key}\n")
-            # Create Config Init Vars.
-            if "# Start: Insert Config Init Vars" in line:
-                for j in cfg_dict.keys():
-                    for key, value in cfg_dict[j].items():
-                        content.insert(i + 1,
-                                       f"\n\t\tcls.{key} = ")
+            # # Create Config Init Vars.
+            # if "# Start: Insert Config Init Vars" in line:
+            #     for j in cfg_dict.keys():
+            #         for key, value in cfg_dict[j].items():
+            #             content.insert(i + 1,
+            #                            f"\n\t\tcls.{key} = ")
         # Delete everything from file and go to line 0.
         tch.seek(0)
         tch.truncate(0)
