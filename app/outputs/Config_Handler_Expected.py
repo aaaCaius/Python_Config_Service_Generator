@@ -25,7 +25,7 @@ class Config_Handler:
 
    ## Category2 ## - Marker comment, Just a Note, Not need to be genereated
 
-   str_Category2_Generic_Text_New_Line = []
+   str_Category2_Generic_Text_New_Line = ''
    lsi_Category2_Generic_Array_New_Line = []
    lsf_Category2_Generic_Float_Array_New_Line = []
 
@@ -240,7 +240,3 @@ class Config_Handler:
       
       cls.b_Class_Init_flg = True
       
-
-cfg = Config_Handler()
-cfg.Import_Config()
-print(cfg.lsi_Category1_Generic_Array)
