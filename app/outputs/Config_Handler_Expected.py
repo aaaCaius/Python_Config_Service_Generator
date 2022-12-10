@@ -1,6 +1,7 @@
 # Include Sesction
 import os
 from configparser import ConfigParser
+from app import root_dir
 
 # Class Deffinition
 class Config_Handler:
@@ -212,8 +213,8 @@ class Config_Handler:
    @classmethod
    def Import_Config(cls):
       #Creating path to project config file
-      cls.str_App_Root_Path = os.path.dirname(os.path.abspath('App'))
-      str_cfg_file_path = os.path.join(cls.str_App_Root_Path,"Config\\config.ini")
+      cls.str_App_Root_Path = root_dir()
+      str_cfg_file_path = os.path.join(cls.str_App_Root_Path,"inputs\\config.ini")
 
       #Import and parse config file
       obj_Proj_Config = ConfigParser()
@@ -238,3 +239,8 @@ class Config_Handler:
       # Stop: Insert Config Init Vars
       
       cls.b_Class_Init_flg = True
+      
+
+cfg = Config_Handler()
+cfg.Import_Config()
+print(cfg.lsi_Category1_Generic_Array)

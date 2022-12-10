@@ -5,13 +5,13 @@ import re
 
 def make_imports():
     """
-    This function adds all needed variables to the Template_Config_Handler class and runs it.
+    This function adds all needed variables to the Template_Config_Handler class.
     """
     # Get the root directory of the app.
     ROOT_DIR = root_dir()
 
     # Load config file.
-    cfg_path = os.path.join(ROOT_DIR, "Config/config.ini")
+    cfg_path = os.path.join(ROOT_DIR, "config/config.ini")
     cfg = ConfigParser()
     cfg.read(cfg_path)
     
@@ -28,9 +28,8 @@ def make_imports():
                     for key, value in cfg.items(cfg.sections()[section]):
                         regex = re.match(r"^[A-Z-a-z]{,9999}\_", key)
                         key = f"{regex.group(0)}{cfg.sections()[section]}_{key[len(regex.group(0)):].title()}"
-                        print(key)
                         #Add the key-value pairs as class attributes.
-                        content.insert(i + 2, f"\t{key} = {value}\n")
+                        content.insert(i + 2, f"\t{key} = ''\n")
             # Create class "get" functions
             if "# Start: Insert Get Methods" in line:
                 for section in range(len(cfg.sections())):
@@ -43,9 +42,6 @@ def make_imports():
                                        f"\n\t\tif cls.b_Class_Init_flg is False:"
                                        f"\n\t\t\tcls.Import_Config()"
                                        f"\n\t\treturn cls.{key}\n")
-
-
-
             # Create Config Init Vars.
             if "# Start: Insert Config Init Vars" in line:
                 for section in range(len(cfg.sections())):
@@ -53,11 +49,7 @@ def make_imports():
                         regex = re.match(r"^[A-Z-a-z]{,9999}\_", key)
                         key = f"{regex.group(0)}{cfg.sections()[section]}_{key[len(regex.group(0)):].title()}"
                         content.insert(i + 1,
-                                       f"\n\t\tcls.{key} = ")
-                                        # To continue
-
-
-
+                                       f"\n\t\tcls.{key} = {value}")
         # Delete everything from file and go to line 0.
         tch.seek(0)
         tch.truncate(0)
