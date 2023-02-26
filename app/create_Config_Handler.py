@@ -1,6 +1,6 @@
 import os
 from configparser import ConfigParser
-from pprint import pprint
+
 
 def create_Config_Handler():
 	"""
@@ -8,7 +8,7 @@ def create_Config_Handler():
 
 	"""
 
-	# Create aabsolute path for the .ini file
+	# Create absolute path for the .ini file
 	ROOT_DIR = os.path.dirname(os.path.abspath('App'))
 	cfg_file_path = os.path.join(ROOT_DIR,"Config\\config.ini")
 	# Instantiate ConfigParser()
@@ -17,7 +17,7 @@ def create_Config_Handler():
 	config.read(cfg_file_path)
 
 	# Create the path where to save the new .py file.
-	save_path = os.path.join(ROOT_DIR,"Output\\Config_Handler_Output.py")
+	save_path = os.path.join(ROOT_DIR,"outputs\\Config_Handler_Output.py")
 
 	# Open/Create the new .py file.
 	# Creating class attributes.
@@ -31,7 +31,7 @@ def create_Config_Handler():
 		current_section = ""
 
 		# This section creates all class attributes.
-		# Loop ever the sections in .ini file
+		# Loop over the sections in .ini file
 		for section in config.sections():
 			# Leave a blank row if there was a section change.
 			if current_section != section:
@@ -44,7 +44,7 @@ def create_Config_Handler():
 				if sw  in key:
 					sw_index = key.index(sw)
 					key = list(key)
-					key[sw_index +1] = "S"
+					key[sw_index + 1] = "S"
 					key[sw_index + 2] = "W"
 					key = "".join(key)
 					new_file.write(f"\t{key} = ''\n")

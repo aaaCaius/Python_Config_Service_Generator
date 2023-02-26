@@ -32,7 +32,7 @@ def make_imports():
                         for key, value in cfg.items(cfg.sections()[section]):
                             if (key.startswith("b_") or key.startswith("lsb_") or key.startswith("i_")
                                     or key.startswith("f_") or key.startswith("str_") or key.startswith("lsi_")
-                                    or key.startswith("lsf_") or key.startswith("lstr_")):
+                                    or key.startswith("lsf_") or key.startswith("lstr_") or key.startswith("llstr_")):
                                 regex = re.match(r"^[A-Z-a-z]{,9999}\_", key)
                                 key = f"{regex.group(0)}{cfg.sections()[section]}_{key[len(regex.group(0)):].title()}"
                                 # Add the key-value pairs as class attributes.
@@ -43,7 +43,7 @@ def make_imports():
                                 if key.startswith("f_"):
                                     content.insert(i + 2, f"\t{key} = 0.0\n")
                                 if (key.startswith("lsi_") or key.startswith("lsf_") or key.startswith("lstr_")
-                                    or key.startswith("lsb_")):
+                                    or key.startswith("lsb_") or key.startswith("llstr_")):
                                     content.insert(i + 2, f"\t{key} = []\n")
                                 if key.startswith("b_"):
                                     content.insert(i + 2, f"\t{key} = False\n")
@@ -53,63 +53,70 @@ def make_imports():
                         for key, value in cfg.items(cfg.sections()[section]):
                             if (key.startswith("b_") or key.startswith("lsb_") or key.startswith("i_")
                                     or key.startswith("f_") or key.startswith("str_") or key.startswith("lsi_")
-                                    or key.startswith("lsf_") or key.startswith("lstr_")):
+                                    or key.startswith("lsf_") or key.startswith("lstr_") or key.startswith("llstr_")):
                                 regex = re.match(r"^[A-Z-a-z]{,9999}\_", key)
                                 key = f"{regex.group(0)}{cfg.sections()[section]}_{key[len(regex.group(0)):].title()}"
                                 # Create "get" functions from class attributes.
                                 content.insert(i + 2,
                                                f"\t@classmethod\n\tdef Get_{key}(cls):"
+                                               f"\n\t" + '""" Upload ' + key + ' attribute to class."""' 
                                                f"\n\t\tif cls.b_Class_Init_flg is False:"
                                                f"\n\t\t\tcls.Import_Config()"
-                                               f"\n\t\treturn cls.{key}\n")
+                                               f"\n\t\treturn cls.{key}\n\n\n")
                 # Create Config Init Vars.
                 if "# Start: Insert Config Init Vars" in line:
                     for section in range(len(cfg.sections())):
                         for key, value in cfg.items(cfg.sections()[section]):
                             if (key.startswith("b_") or key.startswith("lsb_") or key.startswith("i_")
                                     or key.startswith("f_") or key.startswith("str_") or key.startswith("lsi_")
-                                    or key.startswith("lsf_") or key.startswith("lstr_")):
+                                    or key.startswith("lsf_") or key.startswith("lstr_") or key.startswith("llstr_")):
                                 regex = re.match(r"^[A-Z-a-z]{,9999}\_", key)
-                                class_key = f"{regex.group(0)}{cfg.sections()[section]}_{key[len(regex.group(0)):].title()}"
+                                key = f"{regex.group(0)}{cfg.sections()[section]}_{key[len(regex.group(0)):].title()}"
                                 # Write values to class attributes.
                                 if key.startswith("b_"):
-                                    content.insert(i + 1, f"\n\t\tcls.{class_key} = "
+                                    content.insert(i + 1, f"\n\t\tcls.{key} = "
                                                    f"cls.Clean_Convert_Boolean(obj_Proj_Config"
                                                           f"['{cfg.sections()[section]}']['{key}'])")
                                 if key.startswith("lsb_"):
-                                    content.insert(i + 1, f"\n\t\tcls.{class_key} = "
+                                    content.insert(i + 1, f"\n\t\tcls.{key} = "
                                                       f"cls.Clean_Convert_List_Boolean(obj_Proj_Config"
                                                           f"['{cfg.sections()[section]}']['{key}'])")
                                 if key.startswith("lsb_"):
-                                    content.insert(i + 1, f"\n\t\tcls.{class_key} = "
+                                    content.insert(i + 1, f"\n\t\tcls.{key} = "
                                                           f"cls.Clean_Convert_Boolean(obj_Proj_Config"
                                                           f"['{cfg.sections()[section]}']['{key}'])")
                                 if key.startswith("i_"):
-                                    content.insert(i + 1, f"\n\t\tcls.{class_key} = "
+                                    content.insert(i + 1, f"\n\t\tcls.{key} = "
                                                           f"cls.Clean_Convert_Int(obj_Proj_Config"
                                                           f"['{cfg.sections()[section]}']['{key}'])")
                                 if key.startswith("f_"):
-                                    content.insert(i + 1, f"\n\t\tcls.{class_key} = "
+                                    content.insert(i + 1, f"\n\t\tcls.{key} = "
                                                           f"cls.Clean_Convert_Float(obj_Proj_Config"
                                                           f"['{cfg.sections()[section]}']['{key}'])")
                                 if key.startswith("str_"):
-                                    content.insert(i + 1, f"\n\t\tcls.{class_key} = "
+                                    content.insert(i + 1, f"\n\t\tcls.{key} = "
                                                           f"str(obj_Proj_Config['{cfg.sections()[section]}']['{key}'])")
                                 if key.startswith("lsi_"):
-                                    content.insert(i + 1, f"\n\t\tcls.{class_key} = "
+                                    content.insert(i + 1, f"\n\t\tcls.{key} = "
                                                           f"cls.Clean_Convert_List_Int(obj_Proj_Config"
                                                           f"['{cfg.sections()[section]}']['{key}'])")
                                 if key.startswith("lsf_"):
-                                    content.insert(i + 1, f"\n\t\tcls.{class_key} = "
+                                    content.insert(i + 1, f"\n\t\tcls.{key} = "
                                                           f"cls.Clean_Convert_List_Float(obj_Proj_Config"
                                                           f"['{cfg.sections()[section]}']['{key}'])")
                                 if key.startswith("lstr_"):
-                                    content.insert(i + 1, f"\n\t\tcls.{class_key} = "
+                                    content.insert(i + 1, f"\n\t\tcls.{key} = "
                                                           f"cls.Clean_Convert_List_String(obj_Proj_Config"
                                                           f"['{cfg.sections()[section]}']['{key}'])")
-                           
+                                if key.startswith("llstr_"):
+                                    content.insert(i + 1, f"\n\t\tcls.{key} = "
+                                                          f"cls.Clean_Convert_List_String(obj_Proj_Config"
+                                                          f"['{cfg.sections()[section]}']['{key}'])")
+                                    break
             # Delete everything from file and go to line 0.
             cho.seek(0)
             cho.truncate(0)
             # Write everything back to file.
             cho.writelines(content)
+
+make_imports()

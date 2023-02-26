@@ -22,13 +22,13 @@ class Config_Handler:
    lsi_Category1_Generic_Array = []
    lsf_Category1_Generic_Float_Array = []
    lstr_Category1_Generic_Text_List = []
+   llstr_Categor1_Generic_Text_List_Of_Lists = []
 
    ## Category2 ## - Marker comment, Just a Note, Not need to be genereated
 
    str_Category2_Generic_Text_New_Line = ''
    lsi_Category2_Generic_Array_New_Line = []
    lsf_Category2_Generic_Float_Array_New_Line = []
-
    lsb_Category2_Switches = []
 
    ## Category3 ## - Marker comment, Just a Note, Not need to be genereated
@@ -92,6 +92,12 @@ class Config_Handler:
       if cls.b_Class_Init_flg is False:
          cls.Import_Config()
       return cls.lstr_Category1_Generic_Text_List
+
+   @classmethod
+   def Get_lstr_Category1_Generic_Text_List(cls):
+      if cls.b_Class_Init_flg is False:
+         cls.Import_Config()
+      return cls.llstr_Category1_Generic_Text_List_Of_Lists
 
    ## Category2 ## - Marker comment, Just a Note, Not need to be genereated
 
