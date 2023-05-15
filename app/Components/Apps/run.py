@@ -59,7 +59,7 @@ def make_imports():
                                 # Create "get" functions from class attributes.
                                 content.insert(i + 2,
                                                f"\t@classmethod\n\tdef Get_{key}(cls):"
-                                               f"\n\t" + '""" Upload ' + key + ' attribute to class."""' 
+                                               f"\n\t\t" + '""" Upload ' + key + ' attribute to class."""' 
                                                f"\n\t\tif cls.b_Class_Init_flg is False:"
                                                f"\n\t\t\tcls.Import_Config()"
                                                f"\n\t\treturn cls.{key}\n\n\n")
@@ -118,5 +118,6 @@ def make_imports():
             cho.truncate(0)
             # Write everything back to file.
             cho.writelines(content)
+
 
 make_imports()
